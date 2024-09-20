@@ -1,26 +1,16 @@
 const express = require("express");
+const { regsiterUser, loginUser } = require("../controllers/authController");
 const router = express.Router();
-const userModel = require("../models/user-model");
+
+
+require("dotenv").config();
 
 router.get("/", (req,res)=>{
     res.send("working");
 });
 
-router.post("/register", async (req,res)=>{
-    try{
-        let {email, password , fullname } = req.body;
+router.post("/register", regsiterUser);
 
-        let user = await userModel.create({
-            email,
-            password,
-            fullname,
-        });
-
-        res.send(user);
-    }
-    catch(err){
-        console.log(err.message);
-    }
-});
+router.post("/login", loginUser);
 
 module.exports = router;
