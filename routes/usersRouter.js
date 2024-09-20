@@ -1,9 +1,7 @@
 const express = require("express");
-const { regsiterUser, loginUser } = require("../controllers/authController");
+const { regsiterUser, loginUser, logoutUser } = require("../controllers/authController");
 const router = express.Router();
 
-
-require("dotenv").config();
 
 router.get("/", (req,res)=>{
     res.send("working");
@@ -12,5 +10,7 @@ router.get("/", (req,res)=>{
 router.post("/register", regsiterUser);
 
 router.post("/login", loginUser);
+
+router.get("/logout", logoutUser);
 
 module.exports = router;
